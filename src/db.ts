@@ -1,11 +1,11 @@
 import {Pool} from 'pg';
 
-const pool: Pool = new Pool(
+export const pool: Pool = new Pool(
     {
         user: "postgres",
-        password: "",
+        password: '',
         host: "localhost",
-        port: 3001,
+        port: 5432,
         database: "todo"
     }
 )
