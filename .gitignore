@@ -1,6 +1,6 @@
 #JS 
-node_modules/
+Server/node_modules/
 #Placeholder files without implemented features
-src/experimental
+Server/src/experimental
 #Project stucture 
-build/
+Server/build/
