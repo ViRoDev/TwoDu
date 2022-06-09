@@ -1,6 +1,11 @@
-#JS 
+#Server Side
+#---JS 
 Server/node_modules/
-#Placeholder files without implemented features
+#---Placeholder files without implemented features
 Server/src/experimental
-#Project stucture 
+#---Build it yourself!
 Server/build/
+
+#Client
+#---JS
+Client/node_modules/
