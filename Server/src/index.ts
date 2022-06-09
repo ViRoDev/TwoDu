@@ -1,6 +1,18 @@
 import express from 'express'
-const app = express()
+import { taskRouter } from './taskRouter';
 
-app.listen('3001', () => {
-    console.log("server running");  32
-})
+const app = express()
+const PORT = process.env.PORT || 3001;
+//Express can't parse JSON without it
+app.use(express.json());
+
+const main = async () => {
+    app.use(taskRouter);
+    app.listen(PORT, () => {
+        console.log("Server has started");
+    })
+} 
+
+main().catch((e) => {
+    console.log(e);
+});
