@@ -9,7 +9,7 @@ app.use(express.json());
 const main = async () => {
     app.use(taskRouter);
     app.listen(PORT, () => {
-        console.log("Server has started");
+        console.log(`Server has started at port ${PORT}`);
     })
 } 
 
