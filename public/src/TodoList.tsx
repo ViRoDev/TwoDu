@@ -12,7 +12,7 @@ export type TodoListProps = {
 }
     
 export const TodoList : React.FC<TodoListProps> = (props : TodoListProps) => {
-  const todoList = useTodoList(props.listId, process.env.API || "http://localhost:3001/");
+  const todoList = useTodoList(props.listId, process.env.API || "http://localhost:3001");
   return (
     <Box>
       <Box margin="3vh 0vh 0vh">{props.listId}</Box>
