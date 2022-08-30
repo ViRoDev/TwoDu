@@ -33,7 +33,7 @@ export default function useTodoList (listId : number, apiLink : string) {
     useEffect( () => {
         fetchListDataFromServer(listId, apiLink)
             .then(val => setLists(val));
-    })
+    }, [])
 
     return list;
 }
