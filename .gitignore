@@ -6,6 +6,9 @@ Server/src/experimental
 #---Build it yourself!
 Server/build/
 
+#Database
+db/pgdata
+
 #Client
 #---JS
 Client/node_modules/

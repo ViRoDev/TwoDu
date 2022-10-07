@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: twodu
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data
+      - ./db/init-scripts:/docker-entrypoint-initdb.d/
+    ports:
+      - '5432:5432'
+     
