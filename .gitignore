@@ -1,14 +1,14 @@
 #Server Side
 #---JS 
-Server/node_modules/
+server/node_modules/
 #---Placeholder files without implemented features
-Server/src/experimental
+server/src/experimental
 #---Build it yourself!
-Server/build/
+server/build/
 
 #Database
 db/pgdata
 
 #Client
 #---JS
-Client/node_modules/
+slient/node_modules/
