@@ -1,4 +1,4 @@
-import {Request, Response} from 'express'
+import {ErrorRequestHandler, Request, Response} from 'express'
 import {PrismaClient} from '@prisma/client'
 
 class taskController {
@@ -10,40 +10,60 @@ class taskController {
     //TODO: Timestamps, isDone, etc.
     async createTask(req: Request, res: Response) {
         const {title, comment, list_id} = req.body;
-        res.json( 
-            await this.prisma.task.create({
+        try {
+            const createResults = await this.prisma
+            .task.create({
                 data: {
                     title: title,
                     comment: comment,
                     list_id: list_id
                 },
-            })
-        )
+            });
+            res.json(createResults);    
+        }
+        catch(err) {
+            console.log(err);
+            res.status(404).json({error: "Bad list id"})
+        }
     }
 
     async getAllTasks(req: Request, res: Response) {
         const {list_id} = req.body;
-        res.json( 
-            await this.prisma.task.findMany({
+        try {
+            const tasks = await this.prisma
+            .task.findMany({
                 where: {
                     list_id: list_id,
                 },
-            })
-        )
+            });
+            res.json(tasks);
+        }
+        //TODO: normal error logic
+        catch(err) {
+            console.log(err);
+            res.status(418).json({error: "error"});
+        }
     }
 
     async setDone(req: Request, res: Response) {
         const {task_id} = req.body;
-        res.json(
-            await this.prisma.task.update({
+        try {
+            const upd = await this.prisma
+            .task.update({
                 where: {
                     id: task_id,
                 },
                 data: {
                     is_done: true,
-                }
+                },
             })
-        )
+            res.json(upd);
+        }
+        //TODO: normal error logic
+        catch(err) {
+            console.log(err);
+            res.status(418).json("error")
+        }
     }
 }
 
