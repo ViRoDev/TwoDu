@@ -1,5 +1,5 @@
 import express from 'express'
-import { taskRouter } from './taskRouter';
+import { listRouter } from './listRouter';
 
 const app = express()
 const PORT = process.env.PORT || 3001;
@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 
 const main = async () => {
-    app.use('/task',taskRouter);
+    app.use('/list',listRouter);
     app.listen(PORT, () => {
         console.log(`Server has started at port ${PORT}`);
     })

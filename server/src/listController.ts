@@ -1,7 +1,7 @@
 import {ErrorRequestHandler, Request, Response} from 'express'
 import {PrismaClient} from '@prisma/client'
 
-class taskController {
+class listController {
     private prisma : PrismaClient;
     constructor() {
         this.prisma = new PrismaClient();
@@ -27,7 +27,7 @@ class taskController {
         }
     }
 
-    async getAllTasks(req: Request, res: Response) {
+    async getListTasks(req: Request, res: Response) {
         const {list_id} = req.body;
         try {
             const tasks = await this.prisma
@@ -66,4 +66,4 @@ class taskController {
         }
     }
 }
-export default new taskController;
+export default new listController;
