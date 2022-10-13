@@ -8,7 +8,7 @@ class listController {
     }
 
     //TODO: Timestamps, isDone, etc.
-    async createTask(req: Request, res: Response) {
+    public createTask = async (req: Request, res: Response) => {
         const {title, comment, list_id} = req.body;
         try {
             const createResults = await this.prisma
@@ -27,7 +27,7 @@ class listController {
         }
     }
 
-    async getListTasks(req: Request, res: Response) {
+    public getListTasks = async (req: Request, res: Response) => {
         const {list_id} = req.body;
         try {
             const tasks = await this.prisma
@@ -45,7 +45,7 @@ class listController {
         }
     }
 
-    async setDone(req: Request, res: Response) {
+    public setDone = async (req: Request, res: Response) => {
         const {task_id} = req.body;
         try {
             const upd = await this.prisma
