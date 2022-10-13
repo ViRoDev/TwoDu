@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 
 const main = async () => {
-    app.use(taskRouter);
+    app.use('/task',taskRouter);
     app.listen(PORT, () => {
         console.log(`Server has started at port ${PORT}`);
     })
