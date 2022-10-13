@@ -66,11 +66,4 @@ class taskController {
         }
     }
 }
-
-const appendHeaders = (res: Response): Response => {
-    res.append('Access-Control-Allow-Origin', ['*']);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    return res;
-}
 export default new taskController;
