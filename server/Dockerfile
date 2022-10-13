@@ -4,9 +4,8 @@ WORKDIR /usr/app
 COPY package*.json ./
 RUN npm install
 
+COPY docker.env ./.env
 COPY prisma ./prisma/
 RUN npx prisma generate
-
-COPY ./ ./
 
 EXPOSE 3001
