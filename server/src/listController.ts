@@ -9,14 +9,16 @@ class listController {
 
     //TODO: Timestamps, isDone, etc.
     public createTask = async (req: Request, res: Response) => {
-        const {title, comment, list_id} = req.body;
+        const id = Number(req.params.listId);
+        const {title, comment} = req.body;
         try {
             const createResults = await this.prisma
             .task.create({
                 data: {
                     title: title,
                     comment: comment,
-                    list_id: list_id
+                    list_id: id,
+                    is_done: false,
                 },
             });
             res.json(createResults);    
@@ -28,12 +30,14 @@ class listController {
     }
 
     public getListTasks = async (req: Request, res: Response) => {
-        const {list_id} = req.body;
+        console.log(req.params)
+        const id = Number(req.params.listId);
+        console.log(id);
         try {
             const tasks = await this.prisma
             .task.findMany({
                 where: {
-                    list_id: list_id,
+                    list_id: id,
                 },
             });
             res.json(tasks);
@@ -46,16 +50,17 @@ class listController {
     }
 
     public setDone = async (req: Request, res: Response) => {
-        const {task_id} = req.body;
+        const listId = Number(req.params.listId)
+        const taskId = Number(req.params.task)
+
         try {
             const upd = await this.prisma
-            .task.update({
+            .task.updateMany({
                 where: {
-                    id: task_id,
+                    id: taskId,
+                    list_id: listId,
                 },
-                data: {
-                    is_done: true,
-                },
+                data: { is_done: true },
             })
             res.json(upd);
         }
