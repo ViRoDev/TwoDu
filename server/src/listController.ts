@@ -1,4 +1,4 @@
-import {ErrorRequestHandler, Request, Response} from 'express'
+import {Request, Response} from 'express'
 import {PrismaClient} from '@prisma/client'
 
 class listController {
