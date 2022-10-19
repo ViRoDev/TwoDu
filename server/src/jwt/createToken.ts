@@ -2,9 +2,7 @@ import { Result, Ok, Err } from "../Result";
 import { sign } from "./jwt";
 import base64url from "base64url";
 import { JWTHeader, Payload, Token } from "./jwt.types";
-require('dotenv').config()
-
-const SECRET = process.env.SECRET || "123";
+import { SECRET } from "./secretJWT";
 
 export const createToken = (header : JWTHeader, payload : Payload) : Result<Token, SignTokenError> => {
     const [header64, payload64] = [header, payload]
