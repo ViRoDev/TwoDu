@@ -1,4 +1,4 @@
-type Token = `${string}.${string}.${string}`
+type Token = `${HeaderBase64Url}.${PayloadBase64Url}.${string}`
 
 type Alg = "HS256" // | "SHA256"
 
