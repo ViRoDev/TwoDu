@@ -1,14 +1,14 @@
-type Token = `${HeaderBase64Url}.${PayloadBase64Url}.${string}`
+export type Token = `${HeaderBase64Url}.${PayloadBase64Url}.${string}`
 
-type Alg = "HS256" // | "SHA256"
+export type Alg = "HS256" // | "SHA256"
 
-type HeaderBase64Url = string; 
-type JWTHeader = {
+export type HeaderBase64Url = string; 
+export type JWTHeader = {
     alg: Alg,
     typ: "JWT"
 }
 
-type PayloadBase64Url = string;
-type Payload = {
+export type PayloadBase64Url = string;
+export type Payload = {
     sub: number
 }

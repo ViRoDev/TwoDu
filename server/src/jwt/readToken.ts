@@ -1,4 +1,5 @@
 import base64url from "base64url";
+import { JWTHeader, Payload, Token } from "./jwt.types";
 
 //TODO: check values with Result type
 export const readToken = (tk : Token) => {  

@@ -2,6 +2,7 @@ import base64url from "base64url";
 import { HmacSHA256 } from "crypto-js";
 import { SignTokenError } from "./createToken";
 import { Err, Ok, Result } from "../Result";
+import { Alg, HeaderBase64Url, PayloadBase64Url } from "./jwt.types";
 
 //TODO: get rid of try/catch hell, PLEASE
 export const signToken = (header : HeaderBase64Url, payload: PayloadBase64Url, secret: string) : Result<string,SignTokenError> =>  {

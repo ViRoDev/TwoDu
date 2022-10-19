@@ -1,6 +1,7 @@
 import { Err, Ok, Result } from '../Result'
 import { SignTokenError } from './createToken'
 import {create, verify} from './jwt'
+import {JWTHeader, Payload} from './jwt.types'
 
 const header : JWTHeader = {
     alg: "HS256",

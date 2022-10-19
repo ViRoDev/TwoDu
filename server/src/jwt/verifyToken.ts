@@ -2,6 +2,7 @@ import { SignTokenError } from "./createToken";
 import { Err, Ok, Result } from "../Result";
 import { SECRET } from "./secretJWT";
 import { signToken } from "./signToken";
+import { Token } from "./jwt.types";
 
 //TODO: token check function 
 export const verifyToken = (tk : Token) : Result<boolean, SignTokenError> => {
