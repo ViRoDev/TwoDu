@@ -5,6 +5,7 @@ import { signToken } from "./signToken";
 import { Token } from "./jwt.types";
 
 //TODO: token check function 
+//TODO: check if enum rename is possible
 export const verifyToken = (tk : Token) : Result<boolean, SignTokenError> => {
     const [header64, payload64, signature] = tk.split('.');
     const correctSigature = signToken(header64, payload64, SECRET);
