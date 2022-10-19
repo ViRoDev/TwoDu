@@ -1,4 +1,4 @@
-import { SignTokenError } from "./createToken";
+import { SignTokenError } from "./signToken";
 import { Err, Ok, Result } from "../Result";
 import { SECRET } from "./secretJWT";
 import { signToken } from "./signToken";

@@ -1,5 +1,5 @@
 import { Err, Ok, Result } from '../Result'
-import { SignTokenError } from './createToken'
+import { SignTokenError } from './signToken'
 import {create, verify} from './jwt'
 import {JWTHeader, Payload} from './jwt.types'
 

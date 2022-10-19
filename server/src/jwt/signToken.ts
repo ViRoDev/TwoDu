@@ -1,8 +1,14 @@
 import base64url from "base64url";
 import { HmacSHA256 } from "crypto-js";
-import { SignTokenError } from "./createToken";
 import { Err, Ok, Result } from "../Result";
 import { Alg, HeaderBase64Url, PayloadBase64Url } from "./jwt.types";
+
+export enum SignTokenError {
+    HeaderEmptyError = "Header is empty or undefined",
+    HeaderNotJsonError = "Header isn't JSON",
+    HeaderNoHashAlgorythmError = "There is no algorythm defined",
+    HeaderWrongHashAlgorythmError = "This algorythm isn't supported, if it exists"
+}
 
 //TODO: get rid of try/catch hell, PLEASE
 export const signToken = (header : HeaderBase64Url, payload: PayloadBase64Url, secret: string) : Result<string,SignTokenError> =>  {

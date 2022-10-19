@@ -2,6 +2,7 @@ import { Result, Ok, Err } from "../Result";
 import { sign } from "./jwt";
 import base64url from "base64url";
 import { JWTHeader, Payload, Token } from "./jwt.types";
+import { SignTokenError } from "./signToken";
 import { SECRET } from "./secretJWT";
 
 export const createToken = (header : JWTHeader, payload : Payload) : Result<Token, SignTokenError> => {
@@ -16,9 +17,3 @@ export const createToken = (header : JWTHeader, payload : Payload) : Result<Toke
     return Err(signature.error);
 }
 
-export enum SignTokenError {
-    HeaderEmptyError,
-    HeaderNotJsonError,
-    HeaderNoHashAlgorythmError,
-    HeaderWrongHashAlgorythmError
-}

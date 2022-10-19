@@ -1,5 +1,5 @@
-import { createToken, SignTokenError } from './createToken'
-import { signToken } from './signToken'
+import { createToken } from './createToken'
+import { signToken, SignTokenError } from './signToken'
 import { verifyToken } from './verifyToken'
 import { readToken } from './readToken'
 
