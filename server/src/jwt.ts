@@ -5,16 +5,6 @@ require('dotenv').config()
 
 const SECRET = process.env.SECRET || "123"
 
-type Alg = "HS256" // | "SHA256"
-type JWTHeader = {
-    alg: Alg,
-    typ: "JWT"
-}
-
-type Payload = {
-    sub: number
-}
-
 const createToken = (header : JWTHeader, payload : Payload) : Result<Token,SignTokenError> => {
     const [header64, payload64] = [header, payload]
         .map(obj => JSON.stringify(obj))
@@ -33,7 +23,7 @@ enum SignTokenError {
     HeaderNoHashAlgorythmError,
     HeaderWrongHashAlgorythmError
 }
-type HeaderBase64Url = string; type PayloadBase64Url = string;
+
 //TODO: get rid of try/catch hell, PLEASE
 const signToken = (header : HeaderBase64Url, payload: PayloadBase64Url, secret: string) : Result<string,SignTokenError> =>  {
     if(header === "") return Err(SignTokenError.HeaderEmptyError);
@@ -62,7 +52,7 @@ const signToken = (header : HeaderBase64Url, payload: PayloadBase64Url, secret: 
     }
 }
 
-type Token = `${string}.${string}.${string}`
+
 //TODO: token check function too
 //TODO: check values with Result type
 const readToken = (tk : Token) => {  
