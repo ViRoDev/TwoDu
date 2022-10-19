@@ -11,7 +11,7 @@ export const createToken = (header : JWTHeader, payload : Payload) : Result<Toke
         .map(json => base64url.encode(json))
     
     const signature = sign(header64, payload64, SECRET);
-    if(signature.ok) return Ok(`${header64}.${payload64}.${signature}` as Token);
+    if(signature.ok) return Ok(`${header64}.${payload64}.${signature.data}` as Token);
     
     return Err(signature.error);
 }
