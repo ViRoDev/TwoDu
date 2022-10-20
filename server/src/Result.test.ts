@@ -4,6 +4,8 @@ const addOne = (x : number) : Result<number, string> => Ok(x+1);
 const numBad = (x : number) : Result<number, string> => Err('Error 1');
 const numBad2 = (x : number) : Result<number, string> => Err('Error 2');
 
+//TODO: import jest for testing
+
 const test1 = () => {
 console.log(
     [0]
