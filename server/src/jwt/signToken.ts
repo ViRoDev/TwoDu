@@ -1,28 +1,26 @@
 import base64url from "base64url";
 import { HmacSHA256 } from "crypto-js";
 import { Err, Ok, Result } from "../Result";
-import { Alg, HeaderBase64Url, PayloadBase64Url } from "./jwt.types";
+import { Alg, HeaderBase64Url, JWTHeader, PayloadBase64Url } from "./jwt.types";
 
 export enum SignTokenError {
+    UncaughtError = "UncaughtError",
     HeaderEmptyError = "Header is empty or undefined",
     HeaderNotJsonError = "Header isn't JSON",
     HeaderNoHashAlgorythmError = "There is no algorythm defined",
     HeaderWrongHashAlgorythmError = "This algorythm isn't supported, if it exists"
 }
 
-//TODO: get rid of try/catch hell, PLEASE
 export const signToken = (header : HeaderBase64Url, payload: PayloadBase64Url, secret: string) : Result<string,SignTokenError> =>  {
     if(header === "") return Err(SignTokenError.HeaderEmptyError);
-    //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" // { "alg" : "HS256", "typ": "JWT"}
-    let json;
-    try { 
-        json = base64url.decode(header); 
-    } catch { return Err(SignTokenError.HeaderNotJsonError) }
+    
+    const decode = decodeBase64url(header);
+    if (!decode.ok) return Err(decode.error);
+    const json = decode.data;
 
-    let obj;
-    try {
-        obj = JSON.parse(json)
-    } catch { return Err(SignTokenError.HeaderNotJsonError)}
+    const parse = parseJson(json);
+    if (!parse.ok) return Err(parse.error);
+    const obj = parse.data;
 
     if(obj.alg === undefined) return Err(SignTokenError.HeaderNoHashAlgorythmError);
     
@@ -36,4 +34,20 @@ export const signToken = (header : HeaderBase64Url, payload: PayloadBase64Url, s
             return Err(SignTokenError.HeaderWrongHashAlgorythmError);
             break;
     }
+}
+
+const decodeBase64url = (str : string) : Result<string, SignTokenError> => {
+    try {
+        if(str.length < 1) return Err(SignTokenError.HeaderEmptyError);
+        const decoded = base64url.decode(str);
+        return Ok(decoded);
+
+    } catch { return Err(SignTokenError.UncaughtError); }
+}
+
+const parseJson = (json : string) : Result<JWTHeader, SignTokenError> => {
+    try {
+        const obj = JSON.parse(json);
+        return Ok(obj)
+    } catch { return Err(SignTokenError.HeaderNotJsonError); }
 }
